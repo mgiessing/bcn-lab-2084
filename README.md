@@ -26,7 +26,7 @@ Once you enter the VM rightclick on the OpenVPN icon in the taskbar and then cho
 
 Once you're connected you can find a quicklink icon on the desktop that opens the OpenShift webconsole where you have to login using **htpasswd** using the provided credentials.
 
-[image]
+![image](images/0-login.png)
 
 Once you're logged in you'll find youryelf in the Developer perspective and see a prepared project corresponding to your username that has a Snapshot / PVC where the Large Language model artifact is already downloaded for your convenience.
 
