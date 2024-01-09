@@ -1,0 +1,13 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: llama-cpp
+  labels:
+    app: llama-service
+spec:
+  to:
+    kind: Service
+    name: llama-service
+  tls: null
+  port:
+    targetPort: llama-cpp-server

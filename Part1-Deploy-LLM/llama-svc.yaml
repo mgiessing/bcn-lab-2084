@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "llama-service"
+  labels:
+    app: "llama-service"
+spec:
+  type: "ClusterIP"
+  ports:
+    - name: llama-cpp-server
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: "llama-cpp-server"

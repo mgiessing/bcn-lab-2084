@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: etcd-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # Adjust the size according to your needs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etcd-deployment
+  labels:
+    app.kubernetes.io/part-of: MilvusDB
+    app.openshift.io/runtime: redhat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: etcd
+  template:
+    metadata:
+      labels:
+        app: etcd
+    spec:
+      containers:
+        - name: etcd-container
+          image: quay.io/coreos/etcd:v3.5.5
+          command:
+            - etcd 
+            - "-advertise-client-urls"
+            - "http://127.0.0.1:2379" 
+            - "-listen-client-urls"
+            - "http://0.0.0.0:2379"
+            - "--data-dir"
+            - /etcd
+          volumeMounts:
+            - name: etcd-data
+              mountPath: /etcd
+          ports:
+            - containerPort: 2379
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "0.5"
+              memory: 512Mi
+      volumes:
+        - name: etcd-data
+          persistentVolumeClaim:
+            claimName: etcd-pvc
+  strategy:
+    type: Recreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-service
+spec:
+  selector:
+    app: etcd
+  ports:
+    - protocol: TCP
+      port: 2379
+      targetPort: 2379

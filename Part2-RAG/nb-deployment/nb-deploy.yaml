@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-notebook
+  labels:
+    app: cpu-notebook
+spec:
+  volumes:
+  - name: dshm
+    emptyDir:
+      medium: Memory
+  containers:
+  - name: cpu-notebook
+    image: quay.io/mgiessing/pymilvus-jupyter:v2.3.1
+    volumeMounts:
+      - mountPath: /dev/shm
+        name: dshm
+    ports:
+    - containerPort: 8888
+      name: cpu-notebook

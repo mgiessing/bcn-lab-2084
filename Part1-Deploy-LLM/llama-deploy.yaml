@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-cpp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-cpp-server
+  template:
+    metadata:
+      labels:
+        app: llama-cpp-server
+    spec:
+      initContainers:
+        - name: fetch-model-data
+          image: ubi8
+          volumeMounts:
+            - name: llama-models
+              mountPath: /models
+          command:
+            - sh
+            - '-c'
+            - |
+              if [ ! -f /models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf ] ; then
+                curl -L https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q8_0.gguf --output /models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf
+              else
+                echo "model /models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf already present"
+              fi
+          resources: {}
+      nodeSelector:
+        feature.node.kubernetes.io/cpu-cpuid.MMA: "true"
+      containers:
+        - name: llama-cpp
+          image: quay.io/mgiessing/llama-cpp-server:master-b1698-2-ga206137
+          args: ["-m", "/models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf", "-c", "4096", "-b", "32"]
+          ports:
+            - containerPort: 8080
+              name: http
+          volumeMounts:
+            - name: llama-models
+              mountPath: /models
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: llama-models
+          persistentVolumeClaim:
+            claimName: llama-models
