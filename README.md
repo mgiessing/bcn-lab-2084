@@ -153,7 +153,7 @@ This could take a few moments as it initially fetches the model artifact (if not
 
 ### 1.3 Create a service
 
-For the communication we will create a service as well as a route:
+For the communication you will create a service as well as a route:
 
 Networking -> Services -> Create Service
 
@@ -205,7 +205,7 @@ spec:
   
 Click Create!
 
-If we now go to the developer view and watch the Topology we can see the llama-cpp server represented as a circle with a dark blue ring if everything deployed correctly:
+If you now go to the developer view and watch the Topology you can see the llama-cpp server represented as a circle with a dark blue ring if everything deployed correctly:
 
 Light blue ring: (not yet ready)
 
@@ -218,7 +218,7 @@ Dark blue ring: (ready)
 
 ### 1.5 Access your model
 
-We can access the model by clicking on the little Arrow button in the upper right corner of the circle.
+You can access the model by clicking on the little Arrow button in the upper right corner of the circle.
 
 This should open a new browser where you can experiment with the deployed Large Language Model!
 
@@ -267,7 +267,7 @@ _You can ask any question you like, but keep in mind we're using a small model (
 
 ## Part 2: Enhance with RAG using Milvus & LangChain
 
-In the second part we will create a vector database (Milvus) that we'll be using for indexing a sample PDF file.
+In the second part you will create a vector database (Milvus) that we'll be using for indexing a sample PDF file.
 
 ### 2.1 Deploy Milvus
 
