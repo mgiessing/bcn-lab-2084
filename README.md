@@ -20,11 +20,11 @@ We'll be using the IBM Montpellier RADAR environment which is an dedicated OpenS
 
 You'll be provided with a workstation that has access to the RADAR environment by using OpenVPN.
 
-Click on the OpenVPN icon and then `connect` by using the provided credentials.
+Once you enter the VM rightclick on the OpenVPN icon in the taskbar and then choose `connect` to enter the provided credentials.
 
-[image]
+![image](images/0-vpn.png) ![image](images/0-connect.png) 
 
-Once you're connected you can find a quicklink icon on the desktop that opens the OpenShift webconsole where you have to login using htpasswd using the provided credentials.
+Once you're connected you can find a quicklink icon on the desktop that opens the OpenShift webconsole where you have to login using **htpasswd** using the provided credentials.
 
 [image]
 
@@ -207,8 +207,13 @@ Click Create!
 
 If we now go to the developer view and watch the Topology we can see the llama-cpp server represented as a circle with a dark blue ring if everything deployed correctly:
 
-[image]
+Light blue ring: (not yet ready)
 
+![image](images/1.5-lightblue.png) 
+
+Dark blue ring: (ready)
+
+![image](images/1.5-darkblue.png)
 
 
 ### 1.5 Access your model
@@ -217,23 +222,28 @@ We can access the model by clicking on the little Arrow button in the upper righ
 
 This should open a new browser where you can experiment with the deployed Large Language Model!
 
-First don't change any of the parameters and just scroll down to to input field "Say something..." where you can interact with the LLM.
+First don't change any of the parameters and just **scroll down to to input field "Say something..."** where you can interact with the LLM.
 
-[image]
+![image](images/1.5-llama.png)
 
 You can ask any question you like, but keep in mind we're using a small model and there are more powerful models out there.
 
-### Option B: Using CLI
+Feel free to experiment with the model parameters like temperature and predictions.
 
-**IF YOU DEPLOYED THE MODEL SERVER USING OPTION A YOU CAN SKIP THIS PART AND DIRECTLY GO TO Part 2!**
+In the second part we'll see that smaller, resource-efficient models like this can answer questions based on a given context and instructions quite well!
 
-There is also a short version to do all of this in just a few steps using the CLI:
-
-You will need your OpenShift login token which you can get after logging in to the WebUI, click on your username -> Copy login command -> Login again with your credentials -> Display token
+### _Option B: Using CLI_
 
 
-Open the terminal and login to your cluster using the token
-`oc login --token=<YOUR TOKEN> --server=https://api.cadiz.edu.ihost.com:6443`
+**_IF YOU DEPLOYED THE MODEL SERVER USING OPTION A YOU CAN SKIP THIS PART AND DIRECTLY GO TO Part 2!_**
+
+_There is also a short version to do all of this in just a few steps using the CLI:_
+
+_You will need your OpenShift login token which you can get after logging in to the WebUI, click on your username -> Copy login command -> Login again with your credentials -> Display token_
+
+
+_Open the terminal and login to your cluster using the token
+`oc login --token=<YOUR TOKEN> --server=https://api.cadiz.edu.ihost.com:6443`_
 
 ```bash
 # Get the lab repository
@@ -251,13 +261,13 @@ oc get pods -w
 oc get routes llama-service -o jsonpath='{.spec.host}'
 ```
 
-Get the URL and open in the browser.
+_Get the URL and open in the browser._
 
-You can ask any question you like, but keep in mind we're using a small model (although contradicotry to the term "Large Language Model") and there are more powerful models out there.
+_You can ask any question you like, but keep in mind we're using a small model (although contradicotry to the term "Large Language Model") and there are more powerful models out there._
 
 ## Part 2: Enhance with RAG using Milvus & LangChain
 
-In the second part we will create a vector database (Milvus) that we'll be using for indexing data.
+In the second part we will create a vector database (Milvus) that we'll be using for indexing a sample PDF file.
 
 ### 2.1 Deploy Milvus
 
@@ -266,10 +276,11 @@ You can stay in the same OpenShift project.
 You will need your OpenShift login token which you can get after logging in to the WebUI, click on your username -> Copy login command -> Login again with your credentials -> Display token
 
 
-Open the terminal and login to your cluster using the token
+Open the terminal (command prompt or PowerShell) and login to your cluster using:
+
 `oc login --token=<YOUR TOKEN> --server=https://api.cadiz.edu.ihost.com:6443`
 
-If you haven't downloaded the git repository yet (which you've just done if you used the "short way" before) do it now:
+Clone the repository using Github Desktop or use the terminal:
 
 ```bash
 # Get the lab repository
@@ -312,7 +323,7 @@ Once the container is deployed you should be able to access it using the link fr
 
 `oc get route cpu-notebook -o jsonpath='{.spec.host}'`
 
-If you open the notebook server in your browser now drag & drop the notebook (`RAG.ipynb`) from this repo into the notebookserver.
+If you open the notebook server in your browser now drag & drop the notebook (`RAG.ipynb`) from this repo into the notebook server.
 
 Follow the steps inside the notebook!
 
