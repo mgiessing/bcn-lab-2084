@@ -226,11 +226,11 @@ First don't change any of the parameters and just **scroll down to to input fiel
 
 ![image](images/1.5-llama.png)
 
-You can ask any question you like, but keep in mind we're using a small model and there are more powerful models out there.
+You can ask any question you like, but keep in mind we're using a small model and there are more powerful models out there for general conversation.
 
 Feel free to experiment with the model parameters like temperature and predictions.
 
-In the second part we'll see that smaller, resource-efficient models like this can answer questions based on a given context and instructions quite well!
+In the second part we'll see that smaller, resource-efficient models like this can answer questions based on a given context and instructions quite well! That will demonstrate that huge models aren't always required!
 
 ### _Option B: Using CLI_
 
@@ -262,8 +262,6 @@ oc get routes llama-service -o jsonpath='{.spec.host}'
 ```
 
 _Get the URL and open in the browser._
-
-_You can ask any question you like, but keep in mind we're using a small model (although contradicotry to the term "Large Language Model") and there are more powerful models out there._
 
 ## Part 2: Enhance with RAG using Milvus & LangChain
 
