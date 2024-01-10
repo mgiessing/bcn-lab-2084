@@ -20,11 +20,11 @@ We'll be using the IBM Montpellier RADAR environment which is an dedicated OpenS
 
 You'll be provided with a workstation that has access to the RADAR environment by using OpenVPN.
 
-Once you enter the VM rightclick on the OpenVPN icon in the taskbar and then choose `connect` to enter the provided credentials.
+Once you enter the VM right-click on the OpenVPN icon in the taskbar and then choose **connect** to enter the provided credentials.
 
 ![image](images/0-vpn.png) ![image](images/0-connect.png) 
 
-Once you're connected you can find a quicklink icon on the desktop that opens the OpenShift webconsole where you have to login using **htpasswd** using the provided credentials.
+Once you're connected you can find a quicklink icon **OCP Cadiz Console** on the desktop that opens the OpenShift webconsole where you have to login using **htpasswd** using the provided credentials.
 
 ![image](images/0-login.png)
 
@@ -32,7 +32,7 @@ Once you're logged in you'll find youryelf in the Developer perspective and see 
 
 ![image](images/0-project.png)
 
-Select that project to make it the default.
+Click on that project to make it the default.
 
 ## Part 1: Deploy Large Language Model
 
@@ -42,9 +42,9 @@ Now we're going to create several resources using the WebUI.
 
 ### 1.1 Snapshot / PVC
 
-In the "Administrator" view go to:
+In the **Administrator** view go to:
 
-Storage -> PersistentVolumeClaims 
+**Storage** -> **PersistentVolumeClaims** 
 
 You should see an existing PVC:
 
@@ -52,9 +52,9 @@ You should see an existing PVC:
 
 **IF THIS IS NOT THE CASE YOU CAN CREATE THIS USING THE FOLLOWING STEP:**
 
--> Create PersistentVolumeClaim
+-> **Create PersistentVolumeClaim**
 
-Go to the YAML view (`Edit YAML` link) and replace the default with
+Go to the YAML view (**Edit YAML** link) and replace the default with
 
 
 ```yaml
@@ -75,9 +75,9 @@ Click Create!
 
 ### 1.2 Deployment
 
-Next we'll go to Workloads -> Deployments -> Create Deployment
+Next we'll go to **Workloads** -> **Deployments** -> **Create Deployment**
 
-Select the `YAML view` radio button and replace the default with:
+Select the **YAML view** radio button and replace the default with:
 
 ```yaml
 apiVersion: apps/v1
@@ -155,7 +155,7 @@ This could take a few moments as it initially fetches the model artifact (if not
 
 For the communication you will create a service as well as a route:
 
-Networking -> Services -> Create Service
+**Networking** -> **Services** -> **Create Service**
 
 Replace the default with:
 
@@ -183,9 +183,9 @@ Click Create!
 
 Finally we'll create a route to our deployment
 
-Networking -> Routes -> Create Route:
+**Networking** -> **Routes** -> **Create Route**
 
-`YAML view` radio button and replace the default with
+**YAML view** radio button and replace the default with
 
 ```yaml
 kind: Route
@@ -271,7 +271,7 @@ In the second part you will create a vector database (Milvus) that we'll be usin
 
 You can stay in the same OpenShift project.
 
-You will need your OpenShift login token which you can get after logging in to the WebUI, click on your username -> Copy login command -> Login again with your credentials -> Display token
+You will need your OpenShift login token which you can get after logging in to the WebUI, **click on your username** -> **Copy login command** -> **Login again with your credentials** -> **Display token**
 
 
 Open the terminal (command prompt or PowerShell) and login to your cluster using:
@@ -320,6 +320,10 @@ Verify the notebook pod is running:
 Once the container is deployed you should be able to access it using the link from: 
 
 `oc get route cpu-notebook -o jsonpath='{.spec.host}'`
+
+The URL should look like this:
+
+http://cpu-notebook-llamaXX.apps.cadiz.edu.ihost.com (where XX is your user/number)
 
 If you open the notebook server in your browser now drag & drop the notebook (`RAG.ipynb`) from this repo into the notebook server.
 
