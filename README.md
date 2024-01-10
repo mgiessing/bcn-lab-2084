@@ -16,6 +16,8 @@ The second part of the lab will focus on these topics:
 
 ## 0 Setup
 
+>***Note:** <br>It might be helpful to open this lab guide inside the VM in a seperate firefox browser tab for copy & paste code blocks.*
+
 We'll be using the IBM Montpellier RADAR environment which is an dedicated OpenShift cluster. 
 
 You'll be provided with a workstation that has access to the RADAR environment by using OpenVPN.
@@ -75,7 +77,7 @@ Click Create!
 
 ### 1.2 Deployment
 
-> **Note**: If you have problems copy & paste the code using Ctrl+C / Ctrl+V inside the VM you might need to use the browser tools. <br><br>
+> ***Note**: If you have problems copy & paste the code using Ctrl+C / Ctrl+V inside the VM you might need to use the browser tools. <br><br>
 Therefore after copy the code from the git place your cursor in the empty YAML view box, hit the "Alt" key to reveal the hidden menu, use "Edit" -> "Paste"*
 
 Next we'll go to **Workloads** -> **Deployments** -> **Create Deployment**
@@ -300,15 +302,17 @@ oc apply -f .
 cd ..
 ```
 
-Verify that three new pods are running:
+Monitor deployment using:
 
-`oc get pods | grep deployment`
+`oc get pods -w`
 
-You should see etcd-deployment, milvus-deployment and minio-deployment
+Wait until you see etcd-deployment, milvus-deployment and minio-deployment in the "running" state.
+
+The `-w, --watch` command can be interrupted with Ctrl+C.
 
 ### 2.2 Deploy Notebookserver
 
-To interact with Milvus and our Large Language Model we're using a Notebookserver
+To interact with Milvus and our Large Language Model we're using a Notebookserver:
 
 ```bash
 cd nb-deployment
@@ -318,7 +322,7 @@ oc apply -f .
 
 Verify the notebook pod is running:
 
-`oc get pods | grep notebook`
+`oc get pods --selector=app=cpu-notebook -w`
 
 Once the container is deployed you should be able to access it using the link from: 
 
