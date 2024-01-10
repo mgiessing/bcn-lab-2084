@@ -28,7 +28,7 @@ Once you're connected you can find a quicklink icon **OCP Cadiz Console** on the
 
 ![image](images/0-login.png)
 
-Once you're logged in you'll find youryelf in the Developer perspective and see a prepared project corresponding to your username that has a Snapshot / PVC where the Large Language model artifact is already downloaded for your convenience.
+Once you're logged in you'll find yourself in the **Developer** perspective and see a prepared project corresponding to your username that has a Snapshot / PVC where the Large Language model artifact is already downloaded for your convenience.
 
 ![image](images/0-project.png)
 
@@ -75,6 +75,9 @@ Click Create!
 
 ### 1.2 Deployment
 
+> **Note**: If you have problems copy & paste the code using Ctrl+C / Ctrl+V inside the VM you might need to use the browser tools. <br><br>
+Therefore after copy the code from the git place your cursor in the empty YAML view box, hit the "Alt" key to reveal the hidden menu, use "Edit" -> "Paste"*
+
 Next we'll go to **Workloads** -> **Deployments** -> **Create Deployment**
 
 Select the **YAML view** radio button and replace the default with:
@@ -115,7 +118,7 @@ spec:
       containers:
         - name: llama-cpp
           image: quay.io/mgiessing/llama-cpp-server:latest
-          args: ["-m", "/models/tinyllama-2.1b.gguf", "-c", "4096", "-b", "32"]
+          args: ["-m", "/models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf", "-c", "4096", "-b", "32"]
           ports:
             - containerPort: 8080
               name: http
