@@ -78,7 +78,7 @@ Click Create!
 ### 1.2 Deployment
 
 > ***Note**: If you have problems copy & paste the code using Ctrl+C / Ctrl+V inside the VM you might need to use the browser tools. <br><br>
-Therefore after copy the code from the git place your cursor in the empty YAML view box, hit the "Alt" key to reveal the hidden menu, use "Edit" -> "Paste"*
+Therefore, copy the code from the git, place your cursor in the empty YAML view box, hit the "Alt" key to reveal the hidden menu, use "Edit" -> "Paste"*
 
 Next you'll go to **Workloads** -> **Deployments** -> **Create Deployment**
 
@@ -186,7 +186,7 @@ Click Create!
 
 ### 1.4 Create the route
 
-Finally you'll create a route to our deployment
+Finally you'll create a route to your deployment
 
 **Networking** -> **Routes** -> **Create Route**
 
@@ -312,7 +312,7 @@ The `-w, --watch` command can be interrupted with Ctrl+C.
 
 ### 2.2 Deploy Notebookserver
 
-To interact with Milvus and our Large Language Model you're using a Notebookserver:
+To interact with Milvus and your Large Language Model you're using a Notebookserver:
 
 ```bash
 cd nb-deployment
