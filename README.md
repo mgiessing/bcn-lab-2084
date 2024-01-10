@@ -18,7 +18,7 @@ The second part of the lab will focus on these topics:
 
 >***Note:** <br>It might be helpful to open this lab guide inside the VM in a seperate firefox browser tab for copy & paste code blocks.*
 
-We'll be using the IBM Montpellier RADAR environment which is an dedicated OpenShift cluster. 
+You'll be using the IBM Montpellier RADAR environment which is an dedicated OpenShift cluster. 
 
 You'll be provided with a workstation that has access to the RADAR environment by using OpenVPN.
 
@@ -38,7 +38,7 @@ Click on that project to make it the default.
 
 ## Part 1: Deploy Large Language Model
 
-Now we're going to create several resources using the WebUI.
+Now you're going to create several resources using the WebUI.
 
 ### Option A: Using the OpenShift web console
 
@@ -80,7 +80,7 @@ Click Create!
 > ***Note**: If you have problems copy & paste the code using Ctrl+C / Ctrl+V inside the VM you might need to use the browser tools. <br><br>
 Therefore after copy the code from the git place your cursor in the empty YAML view box, hit the "Alt" key to reveal the hidden menu, use "Edit" -> "Paste"*
 
-Next we'll go to **Workloads** -> **Deployments** -> **Create Deployment**
+Next you'll go to **Workloads** -> **Deployments** -> **Create Deployment**
 
 Select the **YAML view** radio button and replace the default with:
 
@@ -186,7 +186,7 @@ Click Create!
 
 ### 1.4 Create the route
 
-Finally we'll create a route to our deployment
+Finally you'll create a route to our deployment
 
 **Networking** -> **Routes** -> **Create Route**
 
@@ -231,11 +231,11 @@ First don't change any of the parameters and just **scroll down to to input fiel
 
 ![image](images/1.5-llama.png)
 
-You can ask any question you like, but keep in mind we're using a small model and there are more powerful models out there for general conversation.
+You can ask any question you like, but keep in mind you're using a small model and there are more powerful models out there for general conversation.
 
 Feel free to experiment with the model parameters like temperature and predictions.
 
-In the second part we'll see that smaller, resource-efficient models like this can answer questions based on a given context and instructions quite well! That will demonstrate that huge models aren't always required!
+In the second part you'll see that smaller, resource-efficient models like this can answer questions based on a given context and instructions quite well! That will demonstrate that huge models aren't always required!
 
 ### _Option B: Using CLI_
 
@@ -270,7 +270,7 @@ _Get the URL and open in the browser._
 
 ## Part 2: Enhance with RAG using Milvus & LangChain
 
-In the second part you will create a vector database (Milvus) that we'll be using for indexing a sample PDF file.
+In the second part you will create a vector database (Milvus) that you'll be using for indexing a sample PDF file.
 
 ### 2.1 Deploy Milvus
 
@@ -290,7 +290,7 @@ Clone the repository using Github Desktop or use the terminal:
 git clone https://github.com/mgiessing/bcn-lab-2084 && cd bcn-lab-2084
 ```
 
-Now we're going to create the milvus deployment:
+Now you're going to create the milvus deployment:
 
 ```
 cd Part2-RAG/milvus-deployment
@@ -312,7 +312,7 @@ The `-w, --watch` command can be interrupted with Ctrl+C.
 
 ### 2.2 Deploy Notebookserver
 
-To interact with Milvus and our Large Language Model we're using a Notebookserver:
+To interact with Milvus and our Large Language Model you're using a Notebookserver:
 
 ```bash
 cd nb-deployment
