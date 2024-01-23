@@ -24,6 +24,8 @@ You'll be provided with a workstation that has access to the RADAR environment b
 
 Once you enter the VM right-click on the OpenVPN icon in the taskbar and then choose **connect** to enter the provided credentials.
 
+In Barcelona you will be using the user **bcnllama_20240126_XX** where XX is your Student Number (01-20).
+
 ![image](images/0-vpn.png) ![image](images/0-connect.png) 
 
 Once you're connected you can find a quicklink icon **OCP Cadiz Console** on the desktop that opens the OpenShift webconsole where you have to login using **htpasswd** using the provided credentials.
