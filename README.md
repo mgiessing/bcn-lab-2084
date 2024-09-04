@@ -122,7 +122,7 @@ spec:
       containers:
         - name: llama-cpp
           image: quay.io/mgiessing/llama-cpp-server:latest
-          args: ["-m", "/models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf", "-c", "4096", "-b", "32"]
+          args: ["-m", "/models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf", "-c", "4096", "-b", "32", "--host", "0.0.0.0"]
           ports:
             - containerPort: 8080
               name: http
